@@ -48,6 +48,9 @@ public class RandomPlaceResource {
 		}
 		
 	}
+	@Operation(summary="odredjuje longt lat i nadmorsku visinu", description="preko geonames apija dobija longitude i atitude koji proslijedjujemo open meteo apiju da bismo dobili nadmorsku visinu")
+	@APIResponse(responseCode="200", description="uspjesno su generisani detaljni podaci o RandomPlace objektu")
+	@APIResponse(responseCode="400", description = "doslo je do reske pri generisanju potrebnih podataka")
 	@PUT
 	@Path("/generate")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -62,6 +65,9 @@ public class RandomPlaceResource {
 					.build();
 		}
 	}
+	@Operation(summary="dozvoljava postavljanje slike", description="uzima id na koji vezuje sliku, kreira folder tako da se slike cuva u filesystemu")
+	@APIResponse(responseCode="200", description="uspjesno sacuvana slika")
+	@APIResponse(responseCode="400", description="doslo je do greske i slika nije sacuvana")
 
 	@POST
 	@Path("/addImage")
@@ -78,6 +84,9 @@ public class RandomPlaceResource {
 					.build();
 		}
 	}
+	@Operation(summary="ucitava sliku", description="uzima id RandomPlace objekta trazi putanju do slike, dekodira je i prikazuje je")
+	@APIResponse(responseCode="200", description="uspjesno je prikazana slika")
+	@APIResponse(responseCode="400", description="doslo je do greske i slika nije prikazana")
 	@GET
 	@Path("/getRandomPlace")
 	@Produces(MediaType.APPLICATION_JSON)
